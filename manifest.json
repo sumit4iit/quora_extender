@@ -1,0 +1,18 @@
+{
+   "background_page": "background.html",
+   "browser_action": {
+      "default_icon": "favicon.ico",
+      "popup": "popup.html"
+   },
+   "description": "See your notifications on Quora",
+   "icons": {
+      "128": "128.png",
+      "16": "favicon.ico",
+      "48": "48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDayLMeb33DZFlUvNuUHUVxf4VZHeDAzaUqSvwBCB2Ai1BeuAXghI4Z3sqjy89ra5a5UOXe9HB3yu60GmuUVlOkqymBnnufpvAKFGg/oBekD7tpHpALwpdO9cF5uw+Uf2GN0jEyRfYfQayddeqVck8/+hKvBOHqVL2hZuS5BSNPHwIDAQAB",
+   "name": "Quora",
+   "permissions": [ "tabs", "http://api.quora.com/" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.2.4"
+}
