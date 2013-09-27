@@ -4,24 +4,27 @@
 
 <script type="text/javascript">
 	var ajax_transport = new XMLHttpRequest();
+
 	update_notifications();
-		
-	function search()
-	{
-		var q = document.getElementById("question_box").value;
-		chrome.tabs.create({url: "http://www.quora.com/search?q=" + q + "&context_type=&context_id="});
-	}
 	
-	function update_notifications()
-	{
-		get_notifications();
-		setTimeout(update_notifications, 60000);
-	}
+	// url of the main service.
+	var url_main = "http://www.quora.com/";	
 	
+	// url of the api
+	var url_api = "http://api.quora.com/api/logged_in_user?fields=notifs,inbox";	
+	
+	
+	// All library functions go here		
+	function searchLib(var q)
+	{
+		// create a new tab and displays a search result.
+		chrome.tabs.create({url: url_main + "search?q=" + q + "&context_type=&context_id="});
+	}
+
 	function get_notifications()
 	{
 		// sending request
-		ajax_transport.open("GET", "http://api.quora.com/api/logged_in_user?fields=notifs,inbox", true);
+		ajax_transport.open("GET", url_api , true);
 		ajax_transport.onreadystatechange = process_notifications;
 		ajax_transport.send(null); // Causes the error
 	}
@@ -36,6 +39,7 @@
 		// Strip while(1);
 		var response = ajax_transport.responseText;
 		response = response.substring("while(1);".length);
+
 		// Parse json
 		var json = JSON.parse(response);
 		
@@ -102,6 +106,21 @@
 		}
 		chrome.browserAction.setBadgeText({text: badgeText});
 	}
+
+	
+	// All interfaces go here.
+	function search()
+	{
+		// library function.
+		searchLib(document.getElementById("search_box").value);
+	}	
+	function update_notifications()
+	{
+		// library function.
+		get_notifications();
+		setTimeout(update_notifications, 60000);
+	}
+	
 </script>
 </head>
 <body>
